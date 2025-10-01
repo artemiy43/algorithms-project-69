@@ -2,7 +2,7 @@ const search = (documents, query) => {
     if (!documents) {
         return [];
     }
-    const terms = query.match(/\w+/g);
+    const terms = query.toLowerCase().match(/\w+/g);
     const invertedDocuments = getInvertIndex(documents);
     const result = [...findNeededDocs(terms, invertedDocuments)];
     const sortedResult = sort(result, documents,invertedDocuments, terms);
@@ -13,7 +13,7 @@ const getInvertIndex = (docs) => {
     const result = {};
     const words = new Set();
     docs.forEach(doc => {
-        doc.text.match(/\w+/g).forEach(word => {
+        doc.text.toLowerCase().match(/\w+/g).forEach(word => {
             words.add(word);
         });
     });
@@ -24,7 +24,7 @@ const getInvertIndex = (docs) => {
         }
 
         for (let doc of docs) {
-            doc.text.match(/\w+/g).forEach(docWord => {
+            doc.text.toLowerCase().match(/\w+/g).forEach(docWord => {
                 if (docWord === word) {
                     result[word].push(doc.id);
                 }
