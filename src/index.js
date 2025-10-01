@@ -1,4 +1,7 @@
 const search = (documents, query) => {
+    if (!documents) {
+        return [];
+    }
     const terms = query.match(/\w+/g);
     const invertedDocuments = getInvertIndex(documents);
     const result = [...findNeededDocs(terms, invertedDocuments)];
@@ -48,6 +51,7 @@ const findNeededDocs = (terms, invertedDocuments) => {
 const sort = (result, documents, invertedDocuments, terms) => {
     const collection = {};
     const countOfDocuments = documents.length;
+    console.log(JSON.stringify(countOfDocuments));
 
     for (let doc of documents) {
         collection[doc.id] = {};
@@ -59,14 +63,23 @@ const sort = (result, documents, invertedDocuments, terms) => {
             const tf = tfCalculate(term, doc, invertedDocuments);
             const idf = idfCalculate(countOfDocuments, term, invertedDocuments);
 
+            console.log(JSON.stringify(`tf: ${tf}`));
+            console.log(JSON.stringify(`idf: ${idf}`));
+
             collection[doc.id].INDEX += tf * idf;
         }
     }
 
-    return Object.entries(collection)
+    console.log(JSON.stringify(collection));
+
+    const answer = Object.entries(collection)
     .filter(entity => result.includes(entity[0]))
     .sort((a,b)=> collection[b[0]].INDEX - collection[a[0]].INDEX)
     .map(entity => entity[0]);
+
+    console.log(JSON.stringify(`answer: ${answer}`));
+
+    return answer;
 };
 
 const tfCalculate = (term, doc, invertedDocuments) => {
@@ -75,6 +88,8 @@ const tfCalculate = (term, doc, invertedDocuments) => {
 
 const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
     const set = new Set(invertedDocuments[term]);
+    console.log(JSON.stringify(`countOfDocuments: ${countOfDocuments}`));
+    console.log(JSON.stringify(`set.size: ${set.size}`));
     return Math.log((countOfDocuments) / Number(set.size));
 };
 
