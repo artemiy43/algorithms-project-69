@@ -88,7 +88,7 @@ const sort = (result, documents, invertedDocuments, terms) => {
 };
 
 const tfCalculate = (term, doc, invertedDocuments) => {
-    return (invertedDocuments[term].filter(invertedDoc => invertedDoc === doc.id).length) / doc.text.match(/\w+/g).length;
+    return (invertedDocuments[term].filter(invertedDoc => invertedDoc === doc.id).length) / doc.text.toLowerCase().match(/\w+/g).length;
 };
 
 const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
