@@ -60,11 +60,16 @@ const sort = (result, documents, invertedDocuments, terms) => {
 
     for (let term of terms) {
         for (let doc of documents) {
+            console.log(JSON.stringify(`term: ${term}`));
+            console.log(JSON.stringify(`doc: ${doc}`));
+
             const tf = tfCalculate(term, doc, invertedDocuments);
             const idf = idfCalculate(countOfDocuments, term, invertedDocuments);
 
             console.log(JSON.stringify(`tf: ${tf}`));
             console.log(JSON.stringify(`idf: ${idf}`));
+
+
 
             collection[doc.id].INDEX += tf * idf;
         }
