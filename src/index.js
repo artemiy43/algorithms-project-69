@@ -90,7 +90,7 @@ const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
     const set = new Set(invertedDocuments[term]);
     console.log(JSON.stringify(`countOfDocuments: ${countOfDocuments}`));
     console.log(JSON.stringify(`set.size: ${set.size}`));
-    return Math.log((countOfDocuments) / Number(set.size));
+    return Math.log10((countOfDocuments) / Number(set.size));
 };
 
 export default search;
