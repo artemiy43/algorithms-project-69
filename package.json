@@ -1,0 +1,27 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/artemiy43/algorithms-project-69/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/artemiy43/algorithms-project-69/actions)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artemiy43/algorithms-project-69.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artemiy43/algorithms-project-69/issues"
+  },
+  "homepage": "https://github.com/artemiy43/algorithms-project-69#readme",
+  "devDependencies": {
+    "eslint": "^9.36.0",
+    "jest": "^30.2.0"
+  }
+}
