@@ -36,7 +36,7 @@ const findNeededDocs = (terms, invertedDocuments) => {
     const result = new Set();
     for (let term of terms) {
         if (invertedDocuments[term]) {
-            for (doc of invertedDocuments[term]) {
+            for (let doc of invertedDocuments[term]) {
                 result.add(doc);
             }
         }
