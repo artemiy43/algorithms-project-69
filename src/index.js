@@ -61,7 +61,7 @@ const sort = (result, documents, invertedDocuments, terms) => {
     for (let term of terms) {
         for (let doc of documents) {
             console.log(JSON.stringify(`term: ${term}`));
-            console.log(JSON.stringify(`doc: ${doc}`));
+            console.log(JSON.stringify(`doc: ${JSON.stringify(doc)}`));
 
             const tf = tfCalculate(term, doc, invertedDocuments);
             const idf = idfCalculate(countOfDocuments, term, invertedDocuments);
