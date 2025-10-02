@@ -78,7 +78,7 @@ const sort = (result, documents, invertedDocuments, terms) => {
     console.log(JSON.stringify(collection));
 
     const answer = Object.entries(collection)
-    .filter(entity => result.includes(entity[0]))
+    .filter(entity => result.includes(entity[0]) && entity[1] !== 0)
     .sort((a,b)=> collection[b[0]].INDEX - collection[a[0]].INDEX)
     .map(entity => entity[0]);
 
