@@ -9,7 +9,7 @@ export default defineConfig([
     extends: ['js/recommended'],
     languageOptions: { globals: globals.node },
     rules: {
-        semi: [2, "always"],
+      semi: [2, 'always'],
     },
   },
 ]);

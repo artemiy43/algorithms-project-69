@@ -15,9 +15,9 @@ const getInvertIndex = (docs) => {
 
     docs.forEach((doc) => {
       doc.text.toLowerCase().match(/\w+/g).forEach((docWord) => {
-          if (docWord === word) {
-            result[word].push(doc.id);
-          }
+        if (docWord === word) {
+          result[word].push(doc.id);
+        }
       });
     });
   });
@@ -38,7 +38,7 @@ const findNeededDocs = (terms, invertedDocuments) => {
   return result;
 };
 
-const tfCalculate = (term, doc, invertedDocuments) => invertedDocuments[term] ? (invertedDocuments[term].filter((invertedDoc) => invertedDoc === doc.id).length) / doc.text.toLowerCase().match(/\w+/g).length : 0;
+const tfCalculate = (term, doc, invertedDocuments) => (invertedDocuments[term] ? (invertedDocuments[term].filter((invertedDoc) => invertedDoc === doc.id).length) / doc.text.toLowerCase().match(/\w+/g).length : 0);
 
 const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
   const set = invertedDocuments[term] ? new Set(invertedDocuments[term]) : new Set();
