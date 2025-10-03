@@ -2,6 +2,7 @@ const search = (documents, query) => {
     if (!documents) {
         return [];
     }
+
     const terms = query.toLowerCase().match(/\w+/g);
     const invertedDocuments = getInvertIndex(documents);
     const result = [...findNeededDocs(terms, invertedDocuments)];
@@ -12,6 +13,7 @@ const search = (documents, query) => {
 const getInvertIndex = (docs) => {
     const result = {};
     const words = new Set();
+
     docs.forEach(doc => {
         doc.text.toLowerCase().match(/\w+/g).forEach(word => {
             words.add(word);
@@ -69,8 +71,6 @@ const sort = (result, documents, invertedDocuments, terms) => {
             console.log(JSON.stringify(`tf: ${tf}`));
             console.log(JSON.stringify(`idf: ${idf}`));
 
-
-
             collection[doc.id].INDEX += tf * idf;
         }
     }
@@ -95,7 +95,7 @@ const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
     const set = new Set(invertedDocuments[term]);
     console.log(JSON.stringify(`countOfDocuments: ${countOfDocuments}`));
     console.log(JSON.stringify(`set.size: ${set.size}`));
-    return Math.log10((countOfDocuments) / Number(set.size));
+    return Math.log2(1 + (countOfDocuments - set.size + 1) / (set.size + 0.5));
 };
 
 export default search;
