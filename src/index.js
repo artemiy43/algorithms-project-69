@@ -88,11 +88,11 @@ const sort = (result, documents, invertedDocuments, terms) => {
 };
 
 const tfCalculate = (term, doc, invertedDocuments) => {
-    return (invertedDocuments[term].filter(invertedDoc => invertedDoc === doc.id).length) / doc.text.toLowerCase().match(/\w+/g).length;
+    return invertedDocuments[term] ? (invertedDocuments[term].filter(invertedDoc => invertedDoc === doc.id).length) / doc.text.toLowerCase().match(/\w+/g).length : 0;
 };
 
 const idfCalculate = (countOfDocuments, term, invertedDocuments) => {
-    const set = new Set(invertedDocuments[term]);
+    const set = invertedDocuments[term] ? new Set(invertedDocuments[term]) : new Set();
     console.log(JSON.stringify(`countOfDocuments: ${countOfDocuments}`));
     console.log(JSON.stringify(`set.size: ${set.size}`));
     return Math.log2(1 + (countOfDocuments - set.size + 1) / (set.size + 0.5));
